@@ -1,13 +1,12 @@
 const express = require("express")
-const Router = express.Router()
+const router = express.Router()
 
-Router.use(express.json())
+const userRoutes = require("./userRoutes")
+const productRoutes = require("./productRoutes")
 
-const { createuser , getuser} = require ("../controllers/controllers")
-
-Router.post("/",createuser)
-Router.get("/",getuser)
-
+router.use("/user", userRoutes)
+router.use("/product", productRoutes)
 
 
-module.exports = Router
+
+module.exports = router

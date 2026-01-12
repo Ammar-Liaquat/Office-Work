@@ -1,12 +1,11 @@
-const user = require("../models/models")
+const User = require("../models/userModels")
 
 const createuser = async (req, res) => {
 
     try {
 
         const { name, email, password } = req.body
-
-        const newuser = await user.create({
+        const user = await User.create({
             name,
             email,
             password
@@ -14,7 +13,7 @@ const createuser = async (req, res) => {
         res.status(201).json({
             message: "user successfully created",
             code: 201,
-            data: newuser
+            data: user
 
         })
     }
@@ -32,14 +31,14 @@ const createuser = async (req, res) => {
 const getuser = async (req, res) => {
 
     try {
-        const id = req.params.id
-        const users = await user.deleteOne({name:"ammar1234"})
-        if (!user) return res.status(404).json({ message: "User not found", code: 404 })
+       
+        const user = await User.find()
+        // if (!user) return res.status(404).json({ message: "User not found", code: 404 })
 
         res.status(200).json({
             code: 200,
             message: "user get fetched",
-            data: users
+            data: user
         })
     } catch (error) {
         console.log(error);

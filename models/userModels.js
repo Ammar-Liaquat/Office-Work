@@ -4,7 +4,8 @@ const Schema = new mongoose.Schema(
     {
         name:{
             type: String,
-            required: true
+            required: true,
+            trim:true
 
         },
         email:{
@@ -17,11 +18,11 @@ const Schema = new mongoose.Schema(
         password:{
             type: String,
             required: true,
-            minlenght: 6
+            minlength: 6
 
         }
     }, 
-    {timeStamps: true}
+    {timestamps: true}
 
 )
 module.exports = mongoose.model("user", Schema)
