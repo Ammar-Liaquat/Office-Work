@@ -23,7 +23,29 @@ const getProducts = async (req, res) => {
     }
     
 }
+
+const patchProducts = async (req, res) => {
+    try {
+        const product = await Products.findByIdAndUpdate({_id:req.params.id},{$set:req.body})
+        res.status(201).json({ message: "Product updated successfully", code: 201, data: product })
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error", code: 500, error: error.message })
+    }
+}
+const delProducts = async (req, res) => {
+    try {
+        const product = await Products.findByIdAndDelete({_id:req.params.id},{$set:req.body})
+        res.status(201).json({ message: "Product updated successfully", code: 201, data: product })
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error", code: 500, error: error.message })
+    }
+}
+
+
+
 module.exports = {
     createProduct,
-    getProducts
+    getProducts,
+    patchProducts,
+    delProducts
 }
